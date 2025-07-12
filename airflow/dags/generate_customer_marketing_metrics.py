@@ -8,6 +8,7 @@ with DAG(
     schedule_interval=timedelta(days=1),
     start_date=datetime(2023, 1, 1),
     catchup=False,
+    max_active_runs=1,
 ) as dag:
     extract_data = BashOperator(
         task_id="extract_data",
