@@ -5,21 +5,21 @@ with customer as (
 
 nation as (
     select *
-    from {{ source('source', 'nation') }}
+    from {{ ref('stg_nation') }}
 ),
 
 region as (
     select *
-    from {{ source('source', 'region') }}
+    from {{ ref('stg_region') }}
 )
 
 SELECT 
         c.customer_key,
         c.customer_name,
-        n_name AS nation_name,
-        n_comment AS nation_comment,
-        r_name AS region_name,
-        r_comment AS region_comment
+        n.nation_name,
+        n.nation_comment,
+        r.region_name,
+        r.region_comment
     FROM customer c
-    LEFT JOIN nation n ON c.nation_key = n_nationkey
-    LEFT JOIN region r ON n_regionkey = r_regionkey
+    LEFT JOIN nation n ON c.nation_key = n.nation_key
+    LEFT JOIN region r ON n.region_key = r.region_key
