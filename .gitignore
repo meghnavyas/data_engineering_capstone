@@ -225,3 +225,7 @@ __marimo__/
 *.swp
 
 .Trash-0/
+airflow/logs/*
+airflow/logs/scheduler/latest/*
+
+*logs*
