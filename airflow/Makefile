@@ -8,15 +8,6 @@ docker-spin-up:
 perms:
 	sudo mkdir -p logs plugins temp dags tests data visualization && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests data visualization tpch_analytics
 
-setup-conn:
-	docker exec scheduler python /opt/airflow/setup_conn.py
-
-run-ddl:
-	docker exec scheduler python /opt/airflow/run_ddl.py
-
-gen-data:
-	docker exec scheduler python /opt/airflow/generate_data.py
-
 do-sleep:
 	sleep 30
 
@@ -28,23 +19,7 @@ down:
 restart: down up
 
 sh:
-	docker exec -ti webserver bash
+	docker exec -ti scheduler bash
 
-####################################################################################################################
-# Testing, auto formatting, type checks, & Lint checks
-pytest:
-	docker exec webserver pytest -p no:warnings -v /opt/airflow/tests
-
-format:
-	docker exec webserver python -m black -S --line-length 79 .
-
-isort:
-	docker exec webserver isort .
-
-type:
-	docker exec webserver mypy --ignore-missing-imports /opt/airflow
-
-lint: 
-	docker exec webserver flake8 /opt/airflow/dags
-
-ci: isort format type lint pytest
+dbt-docs:
+	docker exec -d webserver bash -c "cd /opt/airflow/tpch_analytics && nohup dbt docs serve --host 0.0.0.0 --port 8081 > /tmp/dbt_docs.log 2>&1"

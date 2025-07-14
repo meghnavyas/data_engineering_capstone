@@ -1,8 +1,12 @@
-With fct_lineitem as (
-Select * 
-        from 
-{{ ref('fct_lineitem') }})
 
-select order_key
-    , line_number
-from fct_lineitem
+With fct_lineitem As (
+    Select *
+    From
+        {{ ref('fct_lineitem') }}
+)
+
+Select
+    order_key,
+    line_number
+From fct_lineitem
+

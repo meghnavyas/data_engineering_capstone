@@ -15,9 +15,14 @@ with DAG(
         bash_command="cd $AIRFLOW_HOME && python3 generate_data.py && python3 run_ddl.py",
     )
 
-    run_pipeline = BashOperator(
+    transform_data = BashOperator(
         task_id="dbt_run",
         bash_command="cd $AIRFLOW_HOME && dbt run --profiles-dir /opt/airflow/tpch_analytics/ --project-dir /opt/airflow/tpch_analytics/",
     )
 
-    extract_data >> run_pipeline
+    generate_docs = BashOperator(
+        task_id="dbt_docs_gen",
+        bash_command="cd $AIRFLOW_HOME && dbt docs generate --profiles-dir /opt/airflow/tpch_analytics/ --project-dir /opt/airflow/tpch_analytics/",
+    )
+
+    extract_data >> transform_data >> generate_docs

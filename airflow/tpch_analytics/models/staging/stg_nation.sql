@@ -3,9 +3,10 @@ with nation as (
     from {{ source('source', 'nation') }}
 )
 
-SELECT 
-	n_nationkey as nation_key,
-        n_name AS nation_name,
-        n_comment AS nation_comment,
-	n_regionkey as region_key
-    FROM nation
+select
+    n_nationkey as nation_key,
+    n_name as nation_name,
+    n_comment as nation_comment,
+    n_regionkey as region_key
+from nation
+
