@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 # Create Spark session
 spark = (
-    SparkSession.builder.appName("Run DDLs for TPCH data")
+    SparkSession.builder.appName("Recreate TPCH tables & load in data")
     .config("spark.sql.catalogImplementation", "hive")
     .enableHiveSupport()
     .getOrCreate()

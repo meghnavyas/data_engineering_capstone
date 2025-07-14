@@ -22,7 +22,6 @@ x-airflow-common:
     - ./tests:/opt/airflow/tests
     - ./temp:/opt/airflow/temp
     - ./tpch_analytics:/opt/airflow/tpch_analytics
-
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     postgres:

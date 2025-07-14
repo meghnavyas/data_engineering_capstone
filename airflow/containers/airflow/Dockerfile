@@ -1,11 +1,9 @@
 FROM apache/airflow:2.9.2
 RUN pip install uv
+
 COPY requirements.txt $AIRFLOW_HOME
-
 RUN uv pip install -r $AIRFLOW_HOME/requirements.txt
-# RUN uv sync
 
-COPY setup_conn.py $AIRFLOW_HOME
 COPY run_ddl.py $AIRFLOW_HOME
 COPY generate_data.py $AIRFLOW_HOME
 
@@ -22,7 +20,6 @@ RUN chmod 755 spark-3.5.1-bin-hadoop3.tgz
 
 # Create the target directory and extract the tarball to it
 RUN mkdir -p /opt/spark && tar xvzf spark-3.5.1-bin-hadoop3.tgz --directory /opt/spark --strip-components=1
-
 
 ENV JAVA_HOME='/usr/lib/jvm/java-17-openjdk-amd64'
 ENV PATH=$PATH:$JAVA_HOME/bin

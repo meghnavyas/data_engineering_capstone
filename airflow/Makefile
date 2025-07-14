@@ -20,7 +20,7 @@ gen-data:
 do-sleep:
 	sleep 30
 
-up: perms docker-spin-up do-sleep setup-conn 
+up: perms docker-spin-up do-sleep
 
 down:
 	docker compose down

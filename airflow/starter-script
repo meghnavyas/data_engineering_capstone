@@ -1,7 +1,0 @@
-
-pip install dbt-core dbt-spark "dbt-spark[PyHive]" "dbt-spark[session]"
-
-python3 run_ddl.py
-
-cd tpch_analytics
-dbt run --profiles-dir .
