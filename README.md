@@ -25,7 +25,7 @@ docker compose up -d
 sleep 30 
 ```
 
-Open the Jupyter notebook at [http://localhost:8888/lab/tree/notebooks]([http://localhost:8888/lab/tree/notebooks). When creating a new notebook make sure to select the `Python 3 (ipykernel)` Notebook.
+Open the Jupyter notebook at [http://localhost:8888/lab/tree/notebooks](http://localhost:8888/lab/tree/notebooks). When creating a new notebook make sure to select the `Python 3 (ipykernel)` Notebook.
 
 When you are done stop docker containers with the below command:
 
