@@ -1,3 +1,9 @@
+* [Data Engineering for Beginners](#data-engineering-for-beginners)
+    * [Setup](#setup)
+        * [Prerequisites](#prerequisites)
+        * [Starting and stopping containers](#starting-and-stopping-containers)
+    * [Airflow & dbt](#airflow--dbt)
+
 # Data Engineering for Beginners
 
 Code for the [Data Engineering for Beginners e-book](https://www.startdataengineering.com/).
