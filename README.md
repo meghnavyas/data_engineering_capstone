@@ -33,4 +33,26 @@ When you are done stop docker containers with the below command:
 docker compose down 
 ```
 
+## Airflow & dbt
+
+For the Airflow, dbt & capstone section go into the `airflow` directory and run the make commands as shown below.
+
+```bash
+docker compose down # Make sure to stop Spark/Jupyternotebook containers before turning on Airflow's 
+cd airflow
+make restart # This will ask for your password to create some folders
+```
+
+You can open Airflow UI at [http://localhost:8080](http://localhost:8080) and log in with `airflow` as username and password. In the Airflow UI you can run the dag.
+
+After the dag is run, in the terminal run `make dbt-docs` for dbt to serve the docs, which is viewable by going to [http://localhost:8081](http://localhost:8081).
+
+You can stop the containers & return to parent directory as shown below:
+
+```bash
+make down
+cd ..
+```
+
+
 
