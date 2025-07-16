@@ -69,6 +69,8 @@ services:
     <<: *airflow-common
     container_name: scheduler
     command: scheduler
+    ports:
+      - 10000:10000
     healthcheck:
       test:
         [
@@ -103,3 +105,9 @@ services:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: minio123
     command: server --console-address ":9001" /data
+
+  dashboard:
+    image: metabase/metabase
+    container_name: dashboard
+    ports:
+      - "3000:3000"
