@@ -25,4 +25,9 @@ with DAG(
         bash_command="cd $AIRFLOW_HOME && dbt docs generate --profiles-dir /opt/airflow/tpch_analytics/ --project-dir /opt/airflow/tpch_analytics/",
     )
 
-    extract_data >> transform_data >> generate_docs
+    generate_dashboard = BashOperator(
+        task_id="generate_dashboard",
+        bash_command="cd $AIRFLOW_HOME && python3 /opt/airflow/tpch_analytics/dashboard.py",
+    )
+
+    extract_data >> transform_data >> generate_docs >> generate_dashboard
