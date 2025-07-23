@@ -2,7 +2,8 @@
     * [Setup](#setup)
         * [Prerequisites](#prerequisites)
         * [Starting and stopping containers](#starting-and-stopping-containers)
-    * [Airflow & dbt](#airflow--dbt)
+        * [Running code via Jupyter Notebooks](#running-code-via-jupyter-notebooks)
+        * [Airflow & dbt](#airflow--dbt)
 
 # Data Engineering for Beginners
 
