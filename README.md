@@ -19,19 +19,23 @@ The code for SQL, Python, and data model sections are written using Spark SQL. T
 
 **Windows users**: please setup WSL and a local Ubuntu Virtual machine following **[the instructions here](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview)**. Install the above prerequisites on your ubuntu terminal; if you have trouble installing docker, follow **[the steps here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04#step-1-installing-docker)** (only Step 1 is necessary). Please install the **make** command with `sudo apt install make -y` (if it's not already present). 
 
-
 ### Starting and stopping containers
 
-In your terminal, clone this repo, cd into it, and start the containers as shown below:
+Fork this repository **[data_engineering_for_beginners_code](https://github.com/josephmachado/data_engineering_for_beginners_code/tree/main?tab=readme-ov-file#setup)**.                                                                      
+![GiitHub Fork](./images/fork.png)
+After forking, clone the repo to your local machine and start the containers as shown below:
 
 ```bash
-git clone https://github.com/josephmachado/data_engineering_for_beginners_code.git
+git clone https://github.com/your-user-name/data_engineering_for_beginners_code.git
 cd data_engineering_for_beginners_code
-docker compose up -d 
+docker compose up -d # to start the docker containers
 sleep 30 
 ```
 
-Open the Jupyter Notebook at [http://localhost:8888/lab/tree/notebooks](http://localhost:8888/lab/tree/notebooks). When creating a new notebook, make sure to select the `Python 3 (ipykernel)` Notebook.
+
+Open the Starter Jupyter Notebook at [http://localhost:8888/lab/tree/notebooks/starter-notebook.ipynb](http://localhost:8888/lab/tree/notebooks/starter-notebook.ipynb) and try out the commands in this book. 
+
+If you are creating a new notebook, make sure to select the `Python 3 (ipykernel)` Notebook.
 
 When you are done, stop docker containers with the below command:
 
@@ -42,6 +46,8 @@ docker compose down
 ## Airflow & dbt
 
 For the Airflow, dbt & capstone section, go into the `airflow` directory and run the make commands as shown below.
+
+**Note** All the code in the dbt, Airflow and capstone chapters are to be run via the terminal at `data_engineering_for_beginners_code/airflow` directory.
 
 ```bash
 docker compose down # Make sure to stop Spark/Jupyternotebook containers before turning on Airflow's 
