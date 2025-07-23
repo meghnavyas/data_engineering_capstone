@@ -32,7 +32,9 @@ docker compose up -d # to start the docker containers
 sleep 30 
 ```
 
-Open the Starter Jupyter Notebook at [http://localhost:8888/lab/tree/notebooks/starter-notebook.ipynb](http://localhost:8888/lab/tree/notebooks/starter-notebook.ipynb) and try out the commands in this book as shown below.
+### Running code via Jupyter Notebooks
+
+Open the Starter Jupyter Notebook at [http://localhost:8888/lab/tree/notebooks/starter-notebook.ipynb](http://localhost:8888/lab/tree/notebooks/starter-notebook.ipynb) and try out the commands in ther [Data Engineering for Beginners e-book](https://www.startdataengineering.com/) as shown below.
 
 ![Notebook Template](./images/nb_template.png)
 
@@ -44,7 +46,7 @@ When you are done, stop docker containers with the below command:
 docker compose down 
 ```
 
-## Airflow & dbt
+### Airflow & dbt
 
 For the Airflow, dbt & capstone section, go into the `airflow` directory and run the make commands as shown below.
 
