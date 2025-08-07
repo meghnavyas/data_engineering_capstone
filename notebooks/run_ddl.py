@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 spark = SparkSession.builder.appName("Run DDLs for TPCH data").getOrCreate()
 
 logger.info("Dropping any existing TPCH tables")
+spark.sql("CREATE SCHEMA IF NOT EXISTS prod.db")
 # Drop existing tables if they exist
 spark.sql("DROP TABLE IF EXISTS prod.db.customer")
 spark.sql("DROP TABLE IF EXISTS prod.db.lineitem")
