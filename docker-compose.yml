@@ -11,6 +11,8 @@ services:
     volumes:
       - ./warehouse:/home/iceberg/warehouse
       - ./notebooks:/home/iceberg/notebooks/notebooks
+      - ./notebooks:/home/iceberg/notebooks/data
+      - ./notebooks/python_learn:/home/iceberg/python_files
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
