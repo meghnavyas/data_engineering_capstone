@@ -19,7 +19,7 @@ def createSparkSession():
         raise e
 
 
-def read_data(spark, file_path):
+def read_csv_data(spark, file_path):
     try:
     # Read data from CSV file into DataFrame
         data = spark.read \
@@ -37,15 +37,15 @@ def main():
     logging.basicConfig(level=logging.INFO)
 
     spark = createSparkSession()
-    data = read_data(spark, "/home/iceberg/notebooks/data/data/customer.csv")
+    customer_data = read_csv_data(spark, "/home/iceberg/notebooks/data/data/customer.csv")
     # Display the first 10 rows
-    data.show(10)
+    customer_data.show(10)
 
     # Deduplicate rows based on Customer_ID
-    data_unique = data.dropDuplicates()
-    logger.info(f"Rows after deduplication: {data_unique.count()}")
+    customer_data_unique = customer_data.dropDuplicates()
+    logger.info(f"Rows after deduplication: {customer_data_unique.count()}")
 
-    data_cleaned = data_unique.select(
+    customer_data_cleaned = customer_data_unique.select(
                         col("c_custkey").alias("Customer_ID"),
                         col("c_name").alias("Customer_Name"),
                         col("c_address").alias("Customer_Address"),
@@ -62,14 +62,24 @@ def main():
                                     )
     
     try:
-        data_cleaned.where((col("Customer_AccountBalance") == 0) | (col("Customer_MarketSegment") == "OTHER")).show()
+        customer_data_cleaned.where((col("Customer_AccountBalance") == 0) | (col("Customer_MarketSegment") == "OTHER")).show()
         logger.info("Data cleaning and transformation completed successfully.")
     except Exception as e:
-        logger.error(f'Error during data cleaning and transformation: {e}')
+        logger.error(f'Error fetching data: {e}')
         raise e
     
-    account_tier_counts = data_cleaned.groupBy("Customer_AccountTier").count()
+    account_tier_counts = customer_data_cleaned.groupBy("Customer_AccountTier").count()
     account_tier_counts.show()
+
+    # Read order data
+    order_data = read_csv_data(spark, "/home/iceberg/notebooks/data/data/orders.csv")
+
+    # Read lineitem data
+    lineitem_data = read_csv_data(spark, "/home/iceberg/notebooks/data/data/lineitem.csv")
+
+    order_lineitem_fact = order_data.join(lineitem_data, order_data.o_orderkey == lineitem_data.l_orderkey, "left")
+
+    order_lineitem_fact.show(10)
 
     # Stop the SparkSession
     spark.stop()
